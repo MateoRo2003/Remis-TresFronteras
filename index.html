@@ -552,7 +552,11 @@
                             <option value="Otro">Otro</option>
                         </select>
                     </div>
+
                     <div class="form-group mb-3"><textarea class="form-control" name="remarks" rows="4" placeholder="Tu mensaje..." required=""></textarea></div>
+                                            <small style="display:block; color:#fff; margin-bottom:1rem;">
+        La información que envíes será publicada como testimonio de tu experiencia en nuestros servicios.
+    </small>
                     <button class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
                 </form>
             </div>
@@ -641,15 +645,27 @@
         appId: '1:945721930153:web:84dcff9c699357c7d994b8',
         measurementId: 'G-KPHS9G2FK4',
     };
-    // Inicializar Firebase
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     const form = document.getElementById('testimonyForm');
     const testimoniosList = document.getElementById('testimoniosList');
+
     // Enviar testimonio
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Swal de "Cargando..."
+            Swal.fire({
+                title: 'Enviando...',
+                html: '<div style="display:flex;justify-content:center;align-items:center;"><i class="fas fa-spinner fa-spin fa-2x"></i></div>',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                background: '#1c1c1c',
+                color: '#ffffff'
+            });
+
             const data = {
                 name: form.name.value.trim(),
                 email: form.email.value.trim(),
@@ -657,22 +673,25 @@
                 remarks: form.remarks.value.trim(),
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             };
+
             try {
                 await db.collection('testimonios').add(data);
-                // Swal de éxito
+
+                // Reemplazar el swal de carga por el de éxito
                 Swal.fire({
                     title: '¡Gracias!',
                     html: '<p style="margin-top:10px;">Tu testimonio fue enviado con éxito.</p>',
                     iconHtml: `
-<svg viewBox="0 0 130.2 130.2" style="width:70px;height:70px">
-<circle fill="none" stroke="#00b894" stroke-width="6" cx="65.1" cy="65.1" r="62.1"/>
-<polyline fill="none" stroke="#00b894" stroke-width="6" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
-</svg>`,
+                        <svg viewBox="0 0 130.2 130.2" style="width:70px;height:70px">
+                        <circle fill="none" stroke="#00b894" stroke-width="6" cx="65.1" cy="65.1" r="62.1"/>
+                        <polyline fill="none" stroke="#00b894" stroke-width="6" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                        </svg>`,
                     showConfirmButton: false,
                     timer: 3000,
                     background: '#1c1c1c',
                     color: '#ffffff',
                 });
+
                 form.reset();
                 loadTestimonios();
             } catch (error) {
@@ -688,6 +707,7 @@
             }
         });
     }
+
     // Cargar testimonios
     async function loadTestimonios() {
         testimoniosList.innerHTML = 'Cargando testimonios...';
@@ -701,13 +721,12 @@
             snapshot.forEach((doc) => {
                 const t = doc.data();
                 const div = document.createElement('div');
-                // Estilos del contenedor testimonial (claro y minimalista)
                 div.style.border = '1px solid #00b894';
                 div.style.borderRadius = '10px';
                 div.style.padding = '1.5rem';
                 div.style.marginBottom = '1.5rem';
-                div.style.backgroundColor = '#f9f9f9'; // fondo blanco muy claro
-                div.style.color = '#222'; // texto oscuro
+                div.style.backgroundColor = '#f9f9f9';
+                div.style.color = '#222';
                 div.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.1)';
                 div.style.textAlign = 'center';
                 div.style.maxWidth = '600px';
@@ -723,15 +742,18 @@
                     div.style.transform = 'scale(1)';
                     div.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.1)';
                 };
+
                 const nombre = document.createElement('h4');
                 nombre.textContent = `${t.name} (${t.country})`;
                 nombre.style.color = '#00b894';
                 nombre.style.marginBottom = '0.5rem';
                 nombre.style.fontSize = '1.1rem';
+
                 const texto = document.createElement('p');
                 texto.textContent = `"${t.remarks}"`;
                 texto.style.fontStyle = 'italic';
                 texto.style.margin = '0';
+
                 div.appendChild(nombre);
                 div.appendChild(texto);
                 testimoniosList.appendChild(div);
@@ -741,9 +763,11 @@
             console.error(error);
         }
     }
+
     // Carga inicial de testimonios
     loadTestimonios();
 </script>
+
 <!-- Botón flotante WhatsApp-->
 <a id="whatsapp-button" href="https://wa.me/5493757508417?text=Hola%2C%20quiero%20consultar%20sobre%20los%20traslados." target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 <style>

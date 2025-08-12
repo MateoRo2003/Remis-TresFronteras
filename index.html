@@ -25,6 +25,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" />
     <!-- Font Awesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
     <!-- Core theme CSS (Bootstrap etc.)-->
     <link href="css/styles.css" rel="stylesheet" />
     <!-- Firebase & SweetAlert2 scripts-->
@@ -60,7 +62,7 @@
     </div>
 </header>
 <!-- Services-->
-<section class="page-section" id="services">
+<section class="page-section" id="services" data-aos="fade-up">
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Servicios</h2>
@@ -94,7 +96,7 @@
         </div>
     </div>
 </section>
-<section class="page-section bg-light" id="portfolio">
+<section class="page-section bg-light" id="portfolio" data-aos="fade-up">
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Informaci&oacute;n Tur&iacute;stica</h2>
@@ -110,7 +112,7 @@
         </div>
         <div class="row">
             <!-- Puerto Iguazú-->
-            <div class="col-lg-4 col-sm-6 mb-4 tour-box iguazu">
+            <div class="col-lg-4 col-sm-6 mb-4 tour-box iguazu" >
                 <div class="portfolio-item">
                     <a class="portfolio-link"><img class="img-fluid" src="/assets/img/portfolio/Cataratas-del-Iguazú.webp" alt="Cataratas del Iguazú" /></a>
                     <div class="portfolio-caption">
@@ -429,7 +431,7 @@
         color: #fff;
     }
 </style>
-<section class="page-section" id="about">
+<section class="page-section" id="about" data-aos="fade-up">
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Sobre Nosotros</h2>
@@ -472,7 +474,7 @@
     </div>
 </section>
 <!-- Flota de Vehículos-->
-<section class="page-section bg-light" id="flota">
+<section class="page-section bg-light" id="flota" data-aos="fade-up">
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Nuestra Flota</h2>
@@ -526,7 +528,7 @@
 </div>
 </div>-->
 <!-- Contact-->
-<section class="page-section" id="contact">
+<section class="page-section" id="contact" data-aos="fade-up"> 
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Testimonios &amp; Contacto</h2>
@@ -592,7 +594,7 @@
         </div>
     </div>
 </section>
-<section class="page-section" id="testimonios" style="margin-top: 3rem">
+<section class="page-section" id="testimonios" style="margin-top: 3rem" data-aos="fade-up">
     <div class="container" style="max-width: 800px">
         <div class="text-center mb-4">
             <h2 class="section-heading text-uppercase font-color">TESTIMONIOS</h2>
@@ -603,7 +605,7 @@
 </section>
 <!-- Footer-->
 <!-- Footer-->
-<footer class="footer py-4">
+<footer class="footer py-4" data-aos="fade-up">
     <div class="container">
         <div class="row align-items-center">
             <!-- Izquierda: Copyright-->
@@ -789,6 +791,13 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // duración de la animación en ms
+    once: false // que la animación solo suceda una vez
+  });
+</script>
+
 </body>
 </html>

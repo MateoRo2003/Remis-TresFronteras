@@ -791,8 +791,7 @@
                         aria-label="Correo"><i class="fa fa-envelope"></i></a>
                 </div>
             </div>
-            <!-- Derecha: Desarrollador-->
-            <div class="col-lg-4 text-lg-end text-center mt-3 mt-lg-0">Desarrollado por Mateo Rojas</div>
+            <div class="col-lg-4 text-lg-end text-center mt-3 mt-lg-0"><a href="https://www.mateorojas.com.ar" target="_blank">Desarrollado por Mateo Rojas</a></div>
         </div>
     </div>
 </footer>
@@ -801,7 +800,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Configuración de Firebase
     const firebaseConfig = {
         apiKey: 'AIzaSyCIZoy4fl0mW73MFx9cubLbJPcSJmaDD_c',
         authDomain: 'remis-agustin.firebaseapp.com',
@@ -843,7 +841,7 @@
             try {
                 await db.collection('testimonios').add(data);
 
-                // Reemplazar el swal de carga por el de éxito
+                
                 Swal.fire({
                     title: '¡Gracias!',
                     html: '<p style="margin-top:10px;">Tu testimonio fue enviado con éxito.</p>',
